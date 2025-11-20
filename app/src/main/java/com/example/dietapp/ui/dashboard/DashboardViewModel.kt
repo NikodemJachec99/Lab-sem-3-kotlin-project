@@ -22,7 +22,11 @@ class DashboardViewModel : ViewModel() {
             waterDrank = 1250,
             waterGoal = 2500,
             stepsTaken = 6540,
-            stepsGoal = 10000
+            stepsGoal = 10000,
+            sleepHours = 7.5f,
+            mood = "Happy",
+            bloodSugar = 92,
+            bloodPressure = "118/76"
         )
     )
     val dailyStats: StateFlow<DailyStats> = _dailyStats.asStateFlow()

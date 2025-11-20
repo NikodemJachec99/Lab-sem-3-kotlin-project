@@ -27,12 +27,14 @@ import com.example.dietapp.ui.components.GlassTextField
 import com.example.dietapp.ui.components.LiquidButton
 
 @Composable
-fun LoginScreen(
-    onLoginSuccess: () -> Unit,
-    onNavigateToRegister: () -> Unit
+fun RegisterScreen(
+    onRegisterSuccess: () -> Unit,
+    onNavigateToLogin: () -> Unit
 ) {
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -61,7 +63,7 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Welcome Back",
+                text = "Create Account",
                 style = MaterialTheme.typography.displayMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold
@@ -70,12 +72,20 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "Sign in to continue",
+                text = "Sign up to get started",
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
             )
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(32.dp))
+
+            GlassTextField(
+                value = name,
+                onValueChange = { name = it },
+                placeholder = "Full Name"
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             GlassTextField(
                 value = email,
@@ -92,39 +102,28 @@ fun LoginScreen(
                 visualTransformation = PasswordVisualTransformation()
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            GlassTextField(
+                value = confirmPassword,
+                onValueChange = { confirmPassword = it },
+                placeholder = "Confirm Password",
+                visualTransformation = PasswordVisualTransformation()
+            )
+
             Spacer(modifier = Modifier.height(24.dp))
 
             LiquidButton(
-                text = "Sign In",
-                onClick = onLoginSuccess,
+                text = "Register",
+                onClick = onRegisterSuccess,
                 modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Google Sign In Button (Disabled for now)
-            /*
-            LiquidButton(
-                text = "Sign in with Google",
-                onClick = onLoginSuccess, // TODO: Implement Google Sign In
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-            */
-
-            TextButton(onClick = onNavigateToRegister) {
+            TextButton(onClick = onNavigateToLogin) {
                 Text(
-                    text = "Don't have an account? Register",
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            TextButton(onClick = { /* TODO: Forgot Password */ }) {
-                Text(
-                    text = "Forgot Password?",
+                    text = "Already have an account? Sign In",
                     color = MaterialTheme.colorScheme.primary
                 )
             }

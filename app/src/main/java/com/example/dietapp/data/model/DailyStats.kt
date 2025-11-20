@@ -13,5 +13,9 @@ data class DailyStats(
     val waterDrank: Int, // in ml
     val waterGoal: Int, // in ml
     val stepsTaken: Int,
-    val stepsGoal: Int
+    val stepsGoal: Int,
+    val sleepHours: Float,
+    val mood: String,
+    val bloodSugar: Int, // mg/dL
+    val bloodPressure: String // mmHg (e.g., "120/80")
 )
